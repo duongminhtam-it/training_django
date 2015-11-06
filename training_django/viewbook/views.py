@@ -10,8 +10,8 @@ class ViewListBook(ListView):
     paginate_by = 2
 
     def get_queryset(self):  # Get data from database and setting, this is stronger get_context_data
-        if self.request.GET.get('q'):
-            key_search = self.request.GET.get('q')
-            return Book.objects.filter(name__icontains=key_search)
+        key_word = self.request.GET.get('q')
+        if key_word:
+            return Book.objects.filter(name__icontains=key_word)
         else:
             return Book.objects.all()
